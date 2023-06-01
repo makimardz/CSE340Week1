@@ -6,21 +6,23 @@
   box-sizing: border-box;
 }
   
-p, li {
+body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
+
 /* Desktop styles */
 .hero {
   position: relative;
-  height: 500px;
+  height: 100%;
+  margin:auto;
 }
 
 .hero img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  margin: auto;
 }
 
 .hero-overlay {
@@ -28,11 +30,12 @@ p, li {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: 30%;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.5); /* Add a semi-transparent black background */
+  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent black background */
   color: #000; /* Set the text color to white */
   padding: 20px; /* Add some padding to the overlay */
+  
 }
 
 .cta-button {
@@ -45,6 +48,147 @@ p, li {
   margin-top: 20px;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 20px;
+}
+
+.siteName a {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color:#ff5722
+}
+
+#tools a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff5722;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+nav {
+  background-color: #333;
+  padding: 10px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 5px 20px;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.nav-active {
+  right: 0;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.line {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 5px;
+  transition: all 0.5s ease;
+}
+
+.toggle .line:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle .line:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.two-columns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.two-columns h2 {
+  margin: 0;
+}
+
+.two-columns1 {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.column-left,
+.column-right {
+  width: 48%;
+}
+
+.column-left1,
+.column-right1 {
+  width: 40%;
+  padding: 10px;
+  text-align: center;
+}
+
+.column-left {
+  order: 1;
+}
+
+.column-right {
+  order: 2;
+}
+
+.card-box {
+  background-color: #ff5722;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: auto;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+
 /* Mobile styles */
 @media (max-width: 767px) {
   .hero {
@@ -52,6 +196,82 @@ p, li {
   }
 
   .hero-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 80%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    transition: all 0.5s ease;
+    background-color: #333;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .nav-active {
+    left: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .two-columns {
+    flex-direction: column;
+  }
+  .two-columns1 {
+    flex-direction: row;
+  }
+
+  .column-left,
+  .column-right {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .column-left1,
+  .column-right1 {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .column-left {
+    order: 2;
+  }
+
+  .column-right {
+    order: 1;
+  }
+
+  .card-box {
+    background-color: #ff5722;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
   }
 }
