@@ -35,13 +35,15 @@ body {
   background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent black background */
   color: #000; /* Set the text color to white */
   padding: 20px; /* Add some padding to the overlay */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Add a drop shadow */
+  border-radius: 8px; /* Add a border-radius */
   
 }
 
 .cta-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #ff5722;
+  background-color: #b90913;
   color: #fff;
   border-radius: 5px;
   text-decoration: none;
@@ -61,13 +63,13 @@ header {
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
-  color:#ff5722
+  color:#b90913;
 }
 
 #tools a {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #ff5722;
+  background-color: #b90913;
   color: #fff;
   border-radius: 5px;
   text-decoration: none;
@@ -130,7 +132,7 @@ nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 40px 0;
 }
@@ -169,7 +171,7 @@ nav {
 }
 
 .card-box {
-  background-color: #ff5722;
+  background-color: #b90913;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -262,7 +264,7 @@ nav {
   }
 
   .card-box {
-    background-color: #ff5722;
+    background-color: #b90913;
     display: flex;
     flex-direction: column;
     justify-content: center;
