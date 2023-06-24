@@ -241,6 +241,24 @@ nav ul a {
   font-size: 20px;
 }
 
+#details-container {
+  width: 600px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+
+
 /* Mobile styles */
 @media (max-width: 767px) {
   .hero {
@@ -352,5 +370,14 @@ nav ul a {
 
   .namePrice span {
     font-size: 16px;
+  }
+
+  #details-container {
+    padding: 10px;
+  }
+
+  #details-image img {
+    max-width: 100%;
+    height: auto;
   }
 }
