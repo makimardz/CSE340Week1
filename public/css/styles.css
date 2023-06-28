@@ -300,6 +300,20 @@ nav ul a {
   color: #333;
 }
 
+.register-btn {
+  background: #449d44;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+}
+
+.register-btn:hover {
+  background: #b90913;
+}
 
 /* Mobile styles */
 @media (max-width: 767px) {

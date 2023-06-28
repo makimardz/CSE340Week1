@@ -1,36 +1,32 @@
-
-
-               
-                <form class="loginForm forms login-container" action="/account/login" method="post">
-                    <% if (title) { %>
-                        <h1>
-                            <%= title %>
-                        </h1>
-                        <% } else { res.redirect('/') } %>
+<form class="loginForm forms login-container" action="/account/login" method="post">
+    <% if (title) { %>
+        <h1>
+            <%= title %>
+        </h1>
+    <% } else { res.redirect('/') } %>
                     
-                            <%- messages() %>
+        <%- messages() %>
+            <% if (errors) { %>
+               <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                        <%= error.msg %>
+                        </li>
+        <% }) %>
+               </ul>
+        <% } %>
                     
-                                <% if (errors) { %>
-                                    <ul class="notice">
-                                        <% errors.array().forEach(error=> { %>
-                                            <li>
-                                                <%= error.msg %>
-                                            </li>
-                                            <% }) %>
-                                    </ul>
-                                    <% } %>
+            <label for="email">Email: </label>
+                <input type="email" id="email" name="account_email" class="login-input" required
+                value="<%= locals.account_email %>">
                     
-                        <label for="email">Email: </label>
-                        <input type="email" id="email" name="account_email" class="login-input" required
-                            value="<%= locals.account_email %>">
-                    
-                    <div>
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="account_password" class="login-input" required
-                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="account_password" class="login-input" required
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
                     </div>
                     <input class="login-button" type="submit" value="Login">
                     
-                    <p>No account? <a class="signup-link" href="/account/registration">Sign-up</a></p>
-                </form>
+                    <p>No account? <a class="signup-link" href="/account/register">Sign-up</a></p>
+</form>
            
