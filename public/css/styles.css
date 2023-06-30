@@ -281,6 +281,24 @@ padding: 2rem;
   padding: 20px;
 }
 
+.classificationForm {
+  width: 400px;
+  margin: 30px auto;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+.classification-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
 .login-input {
   width: 100%;
   padding: 10px;
@@ -306,6 +324,20 @@ padding: 2rem;
   background: #449d44;
 }
 
+.classification-button {
+  background: #b90913;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+}
+
+.classification-button:hover {
+  background: #449d44;
+}
 .signup-link {
   color: #999;
   text-decoration: none;
@@ -328,6 +360,25 @@ padding: 2rem;
 
 .register-btn:hover {
   background: #b90913;
+}
+
+#errorHead {
+  text-align: center;
+  margin: 1rem;
+}
+#errorMessage {
+  text-align: center;
+  margin: 1rem;
+}
+
+.add-new{
+  display: column;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 5px 20px;
 }
 
 /* Mobile styles */
