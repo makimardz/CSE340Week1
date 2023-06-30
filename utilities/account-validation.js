@@ -47,7 +47,7 @@ validate.registationRules = () => {
         })
         .withMessage("Password does not meet requirements."),
     ]
-  }
+  };
 
   /* ******************************
  * Check data and return errors or continue to registration
@@ -69,6 +69,53 @@ validate.checkRegData = async (req, res, next) => {
       return
     }
     next()
-  }
+  };
   
-  module.exports = validate
+  /*  **********************************
+ *  Registration Data Validation Rules
+ * ********************************* */
+validate.loginRules = () => {
+  return [
+    // valid email is required and cannot already exist in the DB
+    body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage("A valid email is required."),
+    // .custom(async (account_email) => {
+    //   const emailExists = await accountModel.checkExistingEmail(
+    //     account_email
+    //   );
+    //   if (!emailExists) {
+    //     throw new Error("This email is not registered. Please sign up.");
+    //   }
+    // }),
+
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Please enter your password."),
+  ];
+};
+
+/* ******************************
+ * Check data and return errors or continue to login
+ * ***************************** */
+validate.checkLoginData = async (req, res, next) => {
+  const { account_email } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/login", {
+      errors,
+      title: "Login",
+      nav,
+      account_email,
+    });
+    return;
+  }
+  next();
+};
+
+  module.exports = validate;
