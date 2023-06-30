@@ -1,0 +1,22 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+    
+    <%- messages() %>
+    
+    <% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+        <li>
+            <%= error.msg %>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>
+    
+    <div class="accountManagementContent">
+        <h2>Welcome <%= name %></h2>
+        <p>You're logged in.</p>
+    </div>
