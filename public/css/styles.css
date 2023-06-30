@@ -242,13 +242,28 @@ nav ul a {
 }
 
 #details-container {
-  width: 600px;
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
 }
 
+#details-image {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+#details-image img {
+  max-width: fit-content;
+  width: 100%;
+  border-radius: 5px;
+}
+
+#details-info {
+padding: 2rem;
+}
 .card {
   display: flex;
   justify-content: center;
@@ -428,10 +443,15 @@ nav ul a {
     font-size: 16px;
   }
 
-  #details-container {
-    padding: 10px;
-  }
+ 
 
+  #details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+  }
   #details-image img {
     max-width: 100%;
     height: auto;
