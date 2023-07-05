@@ -10,6 +10,14 @@ router.get("/login",
     utilities.handleErrors(accountController.buildLogin)
     );
 
+// Process the login request
+router.post(
+  "/login",
+  accountValidate.loginRules(),
+  accountValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
+
 // Route to build account register view
 router.get("/register",
     utilities.handleErrors(accountController.buildRegister)
@@ -22,7 +30,7 @@ router.post('/register',
     utilities.handleErrors(accountController.registerAccount)
     );
 
-    // Process the login attempt
+// Process the login attempt
 router.post(
     "/login",
     (req, res) => {

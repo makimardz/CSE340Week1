@@ -76,6 +76,7 @@ invCont.addClassification = async function (req, res) {
 
   if (classificationResult) {
     let nav = await utilities.getNav();
+    const classificationSelect = await utilities.buildClassificationList();
     req.flash(
       "notice",
       `The "${classification_name}" classification was successfully added.`
@@ -114,6 +115,7 @@ invCont.buildNewInventory = async function (req, res, next) {
  * ***************************** */
 invCont.addInventory = async function (req, res) {
   let nav = await utilities.getNav();
+  let classificationSelect = await utilities.buildClassificationList();
   const {
     classification_id,
     inv_make,
