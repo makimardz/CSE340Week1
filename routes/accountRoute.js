@@ -4,6 +4,14 @@ const router = new express.Router();
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities");
 const regValidate = require('../utilities/account-validation');
+const accountValidate = require("../utilities/account-validation");
+
+// Default route - Management View
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountManagement)
+);
 
 // Route to build account login view
 router.get("/login", 

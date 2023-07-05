@@ -27,44 +27,65 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
-* Build the classification view HTML
-* ************************************ */
-Util.buildClassificationGrid = async function(data){
-  let grid
-  if(data.length > 0){
-    grid = '<ul id="inv-display">'
-    data.forEach(vehicle => { 
-      grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr />'
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
-      grid += '</li>'
-    })
-    grid += '</ul>'
-  } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+ * Build the classification view HTML
+ * ************************************ */
+Util.buildClassificationGrid = async function (data) {
+  let grid = "";
+  if (data.length > 0) {
+    grid = '<ul id="inv-display">';
+    data.forEach((vehicle) => {
+      grid += "<li>";
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        'details"><img src="' +
+        vehicle.inv_thumbnail +
+        '" alt="Image of ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' on CSE Motors"></a>';
+      grid += '<div class="namePrice">';
+      grid += "<hr>";
+      grid += "<h2>";
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' details">' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        "</a>";
+      grid += "</h2>";
+      grid +=
+        "<span>$" +
+        new Intl.NumberFormat("en-US").format(vehicle.inv_price) +
+        "</span>";
+      grid += "</div>";
+      grid += "</li>";
+    });
+    grid += "</ul>";
+  } else {
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
-  return grid
-}
+  return grid;
+};
 
-/* Build vehicle details view HTML */
-Util.buildDetails = function(data) {
+/* **************************************
+ * Build the details view HTML
+ * ************************************ */
+Util.buildDetails = async function (data) {
   let invDetailsView;
   if (data) {
     invDetailsView = `
-    
   <div id="details-container">
     <div id="details-image">
       <img src="${data.inv_image}" alt="Image of ${data.inv_make} ${
@@ -85,11 +106,10 @@ Util.buildDetails = function(data) {
       )}</p>
     </div>
   </div>
-
   `;
   } else {
     invDetailsView +=
-      '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+      '<p class="notice">Sorry, no matching vehicles could be found for this classification.</p>';
   }
 
   return invDetailsView;
@@ -135,11 +155,14 @@ Util.checkJWTToken = (req, res, next) => {
   }
 };
 
+
+
 /* ****************************************
  *  Check Login
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
+    const accountData = res.locals.accountData;
     next();
   } else {
     req.flash("notice", "Please log in.");
@@ -153,5 +176,35 @@ Util.checkLogin = (req, res, next) => {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+
+/* ****************************************
+ * Check account type for administrative views
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  const accountData = res.locals.accountData;
+  if (
+    accountData.account_type === "Admin" ||
+    accountData.account_type === "Employee"
+  ) {
+    next();
+  } else {
+    req.flash("notice", "You do not have permission to view that page.");
+    req.flash("notice", "Please log in as an Admin or Employee.");
+    return res.redirect("/account/login");
+  }
+};
+
+/* ****************************************
+ * Check account type for account management view
+ **************************************** */
+Util.accountManagementAccountType = async function (data) {
+  let invManageLink;
+  if (data.account_type === "Admin" || data.account_type === "Employee") {
+    invManageLink = `
+      <h3>Inventory Management</h3>
+      <p><a href="/inv/">Manage Inventory</a></p>`;
+  }
+  return invManageLink;
+};
 
 module.exports = Util;
