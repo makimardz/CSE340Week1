@@ -370,6 +370,10 @@ padding: 2rem;
   background: #b90913;
 }
 
+.space {
+  margin: 1rem;
+}
+
 #errorHead {
   text-align: center;
   margin: 1rem;

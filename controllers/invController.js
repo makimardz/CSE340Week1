@@ -54,7 +54,6 @@ invCont.buildVehicleManagement = async function (req, res, next) {
   });
 };
 
-
 /* ***************************
  *  Build Add New Classification view
  * ************************** */

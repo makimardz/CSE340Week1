@@ -1,4 +1,5 @@
 const utilities = require(".");
+const invModel = require("../models/inventory-model");
 const { body, validationResult } = require("express-validator");
 const validate = {};
 
@@ -12,7 +13,17 @@ validate.addClassificationRules = () => {
       .trim()
       .isAlpha()
       // .isLength({ min: 1 }) // If classification name is empty, it will return an error "Invalid Value"
-      .withMessage("Please provide a valid classification name."),
+      .withMessage("Please provide a valid classification name.")
+      .custom(async (classification_name) => {
+        const classificationExists = await invModel.checkExistingClassification(
+          classification_name
+        );
+        if (classificationExists) {
+          throw new Error(
+            "Classification exists. Please enter a different classification name."
+          );
+        }
+      }),
   ];
 };
 

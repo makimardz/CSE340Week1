@@ -1,0 +1,64 @@
+<div class="login-container">
+    <form class="updateAccountForm forms" action="/account/updateAccount" method="post">
+
+        <% if (title) { %>
+            <h1>
+                <%= title %>
+            </h1>
+            <% } else { res.redirect('/') } %>
+            
+            <%- messages() %>
+            
+            <% if (errors) { %>
+            <ul class="notice">
+                <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+            </ul>
+            <% } %>
+            
+        <div>
+            <label for="fName">First name: </label>
+            <input type="text" id="fName" name="account_firstname" class="login-input" required value="<%= locals.account_firstname %>">
+        </div>
+        <div>
+            <label for="lName">Last name: </label>
+            <input type="text" id="lName" name="account_lastname" class="login-input" required value="<%= locals.account_lastname %>">
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="account_email" class="login-input" required value="<%= locals.account_email %>">
+        </div>
+    
+        <input class="updateAccount-button form-button login-button" type="submit" value="Update" disabled>
+        <input type="hidden" name="account_id"  <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
+    </form>
+    
+    <div class="accountPass-update">
+        <h2 class="passUpdateH2">Update Password</h2>
+        <form class="changePasswordForm forms" action="/account/updatePassword" method="post">
+            <p>*note your original password will be changed</p>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="account_password" class="login-input" required
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+            <div class="pwd-reqs">
+                <p>Password must include: </p>
+                <ul id="passReq">
+                    <li>At least 12 characters</li>
+                    <li>At least 1 uppercase letter</li>
+                    <li>At least 1 number</li>
+                    <li>At least 1 special character</li>
+                </ul>
+                <button type="button" class="register-btn" id="showPassBtn">Show Password</button>
+            </div>
+
+            <div class="space"></div>
+            <input class="updateAcctPass-button form-button login-button" type="submit" value="Change Password">
+            <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
+        
+        </form>
+    </div>
+</div>
+    <script src="../../js/account-update.js"></script>

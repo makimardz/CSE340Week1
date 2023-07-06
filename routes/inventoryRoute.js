@@ -1,4 +1,4 @@
-// Needed Resources 
+// Needed Resources
 const express = require("express");
 const router = new express.Router();
 const invController = require("../controllers/invController");
@@ -15,22 +15,21 @@ router.get(
 
 // Route to build inventory by classification view
 router.get(
-  "/type/:classification_id", 
+  "/type/:classification_id",
   utilities.handleErrors(invController.buildByClassificationId)
-  );
+);
 
-  // Route to build inventory item details by inv id view
+// Route to build inventory item details by inv id view
 router.get(
-    "/detail/:inv_id",
-    utilities.handleErrors(invController.buildVehicleByInvId)
-  );
+  "/detail/:inv_id",
+  utilities.handleErrors(invController.buildDetailsByInvId)
+);
 
 // Route to build add new classification view
 router.get(
   "/add-classification",
   utilities.handleErrors(invController.buildNewClassification)
 );
-
 // Post route to add new classification
 router.post(
   "/add-classification",
@@ -48,7 +47,6 @@ router.get(
   utilities.checkAccountType,
   utilities.handleErrors(invController.buildNewInventory)
 );
-
 // Post route to add new inventory item
 router.post(
   "/add-inventory",
@@ -74,7 +72,6 @@ router.get(
   utilities.checkAccountType,
   utilities.handleErrors(invController.editInventoryView)
 );
-
 // POST route to update inventory item
 router.post(
   "/update/",
@@ -92,7 +89,6 @@ router.get(
   utilities.checkAccountType,
   utilities.handleErrors(invController.deleteInventoryView)
 );
-
 // POST route to delete inventory item
 router.post(
   "/delete/",

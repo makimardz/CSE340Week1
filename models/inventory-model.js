@@ -1,10 +1,12 @@
-const pool = require("../database");
+const pool = require("../database/index.js");
 
-/* *******************************
-* Get all classification data
-* ******************************* */
-async function getClassifications(){
-    return await pool.query("SELECT * FROM public.classification ORDER BY classification_name");
+/* ***************************
+ *  Get all classification data - For Nav
+ * ************************** */
+async function getClassifications() {
+  return await pool.query(
+    "SELECT * FROM public.classification ORDER BY classification_name"
+  );
 }
 
 /* ***************************
@@ -39,24 +41,24 @@ async function getClassificationNameById(classification_id) {
  *  Get all inventory items and classification_name by classification_id - For classification views
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
-    try {
-      const data = await pool.query(
-        `SELECT * FROM public.inventory AS i 
-        JOIN public.classification AS c 
-        ON i.classification_id = c.classification_id 
-        WHERE i.classification_id = $1`,
-        [classification_id]
-      );
-      return data.rows
-    } catch (error) {
-      console.error("getclassificationsbyid error " + error)
-    }
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory AS i 
+      JOIN public.classification AS c 
+      ON i.classification_id = c.classification_id 
+      WHERE i.classification_id = $1`,
+      [classification_id]
+    );
+    return data.rows;
+  } catch (error) {
+    console.error("getInventoryByClassificationId error " + error);
   }
+}
 
 /* ***************************
- *  Get vehicle by invId
+ *  Get inventory item details by inv_id - For details view
  * ************************** */
-async function getVehicleByInvId(inv_id) {
+async function getInventoryByInvId(inv_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i
@@ -65,7 +67,7 @@ async function getVehicleByInvId(inv_id) {
     );
     return data.rows[0];
   } catch (err) {
-    console.error("getVehicleByInvId error " + err);
+    console.error("getInventoryByInvId error " + err);
   }
 }
 
@@ -168,14 +170,14 @@ async function deleteInventoryItem(inv_id) {
   }
 }
 
-  module.exports = {
+module.exports = {
   getClassifications,
   checkExistingClassification,
   getClassificationNameById,
-  getInventoryByClassificationId, 
-  getVehicleByInvId,
+  getInventoryByClassificationId,
+  getInventoryByInvId,
   addClassification,
   addVehicleToInventory,
   updateInventory,
-  deleteInventoryItem
+  deleteInventoryItem,
 };
