@@ -75,6 +75,16 @@ header {
   text-decoration: none;
 }
 
+.add-new a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #b90913;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
 nav {
   background-color: #333;
   padding: 10px;
@@ -435,6 +445,14 @@ padding: 2rem;
     left: 0;
   }
 
+   #tools a {
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
   .hamburger {
     display: block;
   }
@@ -507,9 +525,7 @@ padding: 2rem;
     font-size: 16px;
   }
 
- 
-
-  #details-container {
+   #details-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -525,7 +541,39 @@ padding: 2rem;
     width: 100%;
     padding: 10px;
   }
+}
 
+@media (max-width: 320px) {
+  .hero {
+    height: 200px;
+  }
 
+  .hero-overlay {
+    top: 30%;
+  }
 
+  .nav-links {
+    top: 60px;
+  }
+
+  #tools a {
+    margin-bottom: 5px;
+  }
+
+  .column-left,
+  .column-right {
+    margin-bottom: 10px;
+  }
+
+  #inv-display img {
+    height: 150px;
+  }
+
+  .namePrice h2 {
+    font-size: 16px;
+  }
+
+  .namePrice span {
+    font-size: 14px;
+  }
 }
