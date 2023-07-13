@@ -339,7 +339,7 @@ padding: 2rem;
   cursor: pointer;
 }
 .login-button:hover {
-  background: #449d44;
+  background: #0d350d;
 }
 
 .classification-button {
@@ -354,19 +354,20 @@ padding: 2rem;
 }
 
 .classification-button:hover {
-  background: #449d44;
+  background: #0d350d;
 }
 .signup-link {
-  color: #999;
+  color: #b90913;
   text-decoration: none;
+  font-weight: 700;
 }
 
 .signup-link:hover {
-  color: #333;
+  color: #0d350d;
 }
 
 .register-btn {
-  background: #449d44;
+  background: #0d350d;
   color: #fff;
   border: none;
   padding: 10px;
@@ -394,7 +395,7 @@ padding: 2rem;
 }
 
 .add-new{
-  display: column;
+  display: inline-block;
   justify-content: space-between;
   align-items: center;
   list-style: none;
