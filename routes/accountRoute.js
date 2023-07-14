@@ -14,6 +14,7 @@ router.get(
 
 // Route to build account login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
+
 // Process the login request
 router.post(
   "/login",
@@ -27,6 +28,7 @@ router.get(
   "/registration",
   utilities.handleErrors(accountController.buildRegister)
 );
+
 // Process Registration Data
 router.post(
   "/register",
@@ -64,4 +66,19 @@ router.get(
   utilities.checkLogin,
   utilities.handleErrors(accountController.logout)
 );
+
+// GET route to delete account
+router.get(
+  "/delete/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildDeleteAccount)
+);
+
+// Post route to delete account
+router.post(
+  "/deleteAccount",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.deleteAccount)
+);
+
 module.exports = router;

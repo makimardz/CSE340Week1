@@ -97,4 +97,20 @@ router.post(
   utilities.handleErrors(invController.deleteInventoryItem)
 );
 
+// GET route to delete classification - Deliver the delete confirmation view
+router.get(
+  "/delete-classification/",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.deleteClassificationView)
+);
+
+// POST route to delete classification
+router.post(
+  "/delete-classification/",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.deleteClassification)
+);
+
 module.exports = router;

@@ -110,6 +110,20 @@ async function updatePassword(account_password, account_id) {
   }
 }
 
+/* *****************************
+ * delete account by account id
+ * ***************************** */
+async function deleteAccount(account_id) {
+  try {
+    const sql = "DELETE FROM public.account WHERE account_id = $1";
+    const data = await pool.query(sql, [account_id]);
+    return data.rows;
+  } catch (error) {
+    console.error(error.message);
+    return new Error("Unable to delete account");
+  }
+}
+
 module.exports = {
   registerAccount,
   checkExistingEmail,
@@ -117,4 +131,5 @@ module.exports = {
   getAccountById,
   updateAccount,
   updatePassword,
+  deleteAccount,
 };
