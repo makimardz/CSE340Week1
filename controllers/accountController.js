@@ -261,6 +261,45 @@ async function logout(req, res) {
   res.redirect("/");
 }
 
+/* ****************************************
+ *  delete account view
+ * ************************************ */
+async function buildDeleteAccount(req, res) {
+  let nav = await utilities.getNav();
+  const account_id = parseInt(req.params.account_id);
+  const accountData = await accountModel.getAccountById(account_id);
+  res.render("account/delete-confirm", {
+    title: "Delete Account",
+    nav,
+    errors: null,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email,
+    account_id: accountData.account_id,
+  });
+}
+
+/* ****************************************
+ *  process delete account
+ * ************************************ */
+async function deleteAccount(req, res) {
+  let nav = await utilities.getNav();
+  const account_id = parseInt(req.body.account_id);
+  const deleteResult = await accountModel.deleteAccount(account_id);
+  if (deleteResult) {
+    res.clearCookie("jwt");
+    req.flash("notice", `Your account has been deleted.`);
+    res.redirect("/");
+  } else {
+    req.flash("notice", "Sorry, account deletion failed.");
+    res.status(501).render("/account/management/", {
+      title: "Account Management",
+      nav,
+      errors: null,
+    });
+  }
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
@@ -271,4 +310,6 @@ module.exports = {
   updateAccount,
   updatePassword,
   logout,
+  buildDeleteAccount,
+  deleteAccount,
 };
