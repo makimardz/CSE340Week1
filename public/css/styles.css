@@ -274,6 +274,7 @@ nav ul a {
 #details-info {
 padding: 2rem;
 }
+
 .card {
   display: flex;
   justify-content: center;
@@ -328,6 +329,7 @@ padding: 2rem;
   cursor: pointer;
   transition: background 0.3s ease;
   font-size: 16px;
+  text-decoration: none;
 }
 
 .select {
@@ -338,6 +340,7 @@ padding: 2rem;
   margin-bottom: 0.5rem;
   cursor: pointer;
 }
+
 .login-button:hover {
   background: #0d350d;
 }
@@ -356,6 +359,7 @@ padding: 2rem;
 .classification-button:hover {
   background: #0d350d;
 }
+
 .signup-link {
   color: #b90913;
   text-decoration: none;
@@ -389,6 +393,7 @@ padding: 2rem;
   text-align: center;
   margin: 1rem;
 }
+
 #errorMessage {
   text-align: center;
   margin: 1rem;
@@ -531,8 +536,8 @@ padding: 2rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  
   }
+
   #details-image img {
     max-width: 100%;
     height: auto;

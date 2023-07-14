@@ -1,3 +1,4 @@
+<div class="login-container">
 <% if (title) { %>
     <h1>
         <%= title %>
@@ -20,7 +21,8 @@
         <h2>Welcome <%= firstName %></h2>
         <p>You're logged in.</p>
     
-        <p><a href="/account/update/<%- accountData.account_id %>">Update Account information</a></p>
+        <p><a class="login-button" href="/account/update/<%- accountData.account_id %>">Update Account information</a></p>
     
-        <%- invManageLink %>
+       <%- invManageLink %>
     </div>
+</div>

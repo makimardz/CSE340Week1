@@ -1,4 +1,4 @@
-<div class="login-container"
+<div class="login-container">
 <!-- Content Heading -->
 <% if (title) { %>
     <h1>
@@ -15,12 +15,14 @@
     <ul id="vehicleManagementList" class="add-new">
         <li><a href="/inv/add-classification">Add New Classification</a></li>
         <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+        <li><a href="/inv/delete-classification">Delete a Classification</a></li>
     </ul>
+    
     
     <div class="manageInv">
         <h2>Manage Inventory</h2>
         <p>Choose a classification to see those inventory items.</p>
-        <select name="classificationList" id="classificationList" class="select"><%- classificationSelect %></select>
+        <select name="classificationList" id="classificationList" class="login-input"><%- classificationSelect %></select>
     
         <table id="inventoryDisplay"></table>
     
