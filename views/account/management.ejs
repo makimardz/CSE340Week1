@@ -21,8 +21,13 @@
         <h2>Welcome <%= firstName %></h2>
         <p>You're logged in.</p>
     
-        <p><a class="login-button" href="/account/update/<%- accountData.account_id %>">Update Account information</a></p>
-    
+        <p><a href="/account/update/<%- accountData.account_id %>">Update Account information</a></p>
+
+        <p id="deleteAccountLink"><a href="/account/delete/<%- locals.accountData.account_id %>">Delete Account</a></p>
+
+        <div class="space2"></div>
+    <hr>
        <%- invManageLink %>
+       
     </div>
 </div>
